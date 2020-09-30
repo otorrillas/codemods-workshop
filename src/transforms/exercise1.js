@@ -1,3 +1,8 @@
 module.exports = function(fileInfo, api) {
-  // TODO
+    const j = api.jscodeshift;
+
+    return j(fileInfo.source)
+        .findVariableDeclarators('r')
+        .renameTo('result')
+        .toSource();
 }
