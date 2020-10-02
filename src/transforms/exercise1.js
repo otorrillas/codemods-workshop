@@ -1,3 +1,10 @@
-module.exports = function(fileInfo, api) {
-  // TODO
+const { assignmentExpression } = require("jscodeshift")
+
+module.exports = function(file, api) {
+  const j = api.jscodeshift;
+
+  return j(file.source)
+    .findVariableDeclarators("r")
+    .renameTo("result")
+    .toSource();
 }
